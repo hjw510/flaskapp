@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>📋 메모장</title>
+    <style>
+        body { font-family: sans-serif; margin: 2rem; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { padding: 8px; border: 1px solid #ccc; }
+        th { background-color: #f0f0f0; }
+        textarea { width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>📋 메모 목록</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>날짜</th>
+            <th>내용</th>
+            <th>동작</th>
+        </tr>
+        {% for memo in memos %}
+        <tr>
+            <td>{{ memo[0] }}</td>
+            <td>{{ memo[1] }}</td>
+            <td>{{ memo[2] }}</td>
+            <td>
+                <a href="/memo/edit/{{ memo[0] }}">✏️ 수정</a> |
+                <a href="/memo/delete/{{ memo[0] }}">❌ 삭제</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>➕ 메모 추가</h2>
+    <form method="POST" action="/memo/add">
+        <textarea name="content" placeholder="메모 내용을 입력하세요" rows="4" required></textarea>
+        <br><br>
+        <button type="submit">메모 추가</button>
+    </form>
+</body>
+</html>
